@@ -1,0 +1,28 @@
+-
+ title: Graphic
+ directory: graphic
+ picture_path: graphic
+ preview:
+  filename: g32.jp
+  original: g32.jp-1876x1951.jpg
+  sizes: []
+  thumbnail: g32.jp-1876x1951.jpg
+-
+ title: Mobile
+ directory: mobile
+ picture_path: mobile
+ preview:
+  filename: m2.jp
+  original: m2.jp-1600x1080.jpg
+  sizes: []
+  thumbnail: m2.jp-1600x1080.jpg
+
+-
+ title: Web
+ directory: web
+ picture_path: web
+ preview:
+  filename: w9.jp
+  original: w9.jp-1024x1525.jpg
+  sizes: []
+  thumbnail: w9.jp-1024x1525.jpg
