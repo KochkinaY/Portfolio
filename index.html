@@ -13,8 +13,9 @@ title: Portfolio
 {% for gallery in site.data.galleries.overview %}
 {% if count == 0 %}<div class="row">{% endif %}
   <div class="half-width gallery-preview {{ align }}" >
-    <h1>{{ gallery.title }}</h1>
-    <a href="{{ site.url }}{{ site.baseurl }}/portfolio/{{ gallery.directory }}.html">
+     <a href="{{ site.url }}{{ site.baseurl }}/portfolio/{{ gallery.directory }}.html">
+      <h1>{{ gallery.title }}</h1>
+   
       <img alt="{{ gallery.title }}"  style="object-fit: cover;  width:350px;  height:350px;" src="{{ site.url }}{{ site.baseurl }}/assets/portfolio/{% if gallery.picture_path %}{{ gallery.picture_path }}{% else %}{{ gallery.directory }}{% endif %}/{{ gallery.preview.thumbnail }}" />
     </a>
   </div>
