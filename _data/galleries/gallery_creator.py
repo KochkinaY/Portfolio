@@ -11,9 +11,9 @@ from os import listdir, rename
 from os.path import isfile, join
 
 # configuration
-output_file = "mobile.yml"
+output_file = "web.yml"
 input_file = output_file
-image_path = "mobile"
+image_path = "web"
 extensions= ['jpg', 'png']
 
 # set correct path

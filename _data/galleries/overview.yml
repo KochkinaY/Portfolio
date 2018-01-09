@@ -15,14 +15,14 @@
   filename: m2.jp
   original: m2.jp-1600x1080.jpg
   sizes: []
-  thumbnail: m2.jp-1600x1080.jpg
+  thumbnail: m2.jp-650x1080.jpg
 
 -
  title: Web
  directory: web
  picture_path: web
  preview:
-  filename: w9.jp
-  original: w9.jp-1024x1525.jpg
+  filename: w1.jp
+  original: w1.jp-1024x1925.jpg
   sizes: []
-  thumbnail: w9.jp-1024x1525.jpg
+  thumbnail: w1.jp-1024x1925.jpg

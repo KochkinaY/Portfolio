@@ -2,8 +2,7 @@ picture_path: web
 pictures:
 - filename: w1.jp
   original: w1.jp-1024x1925.jpg
-  sizes:
-  - w1.jp-1024x1925.jpg
+  sizes: []
   thumbnail: w1.jp-1024x1925.jpg
 - filename: w4.jp
   original: w4.jp-898x2160.jpg
@@ -104,3 +103,7 @@ pictures:
   original: w9.jp-1024x1525.jpg
   sizes: []
   thumbnail: w9.jp-1024x1525.jpg
+- filename: w26.jp
+  original: w26.jp-500x480.jpg
+  sizes: []
+  thumbnail: w26.jp-500x480.jpg
