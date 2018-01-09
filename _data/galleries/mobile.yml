@@ -1,13 +1,5 @@
 picture_path: mobile
 pictures:
-- filename: m2.jp
-  original: m2.jp-1600x1080.jpg
-  sizes: []
-  thumbnail: m2.jp-650x1080.jpg
-- filename: m1.jp
-  original: m1.jp-2550x1080.jpg
-  sizes: []
-  thumbnail: m1.jp-1270x1080.jpg
 - filename: m3.jp
   original: m3.jp-2048x2732.jpg
   sizes: []
@@ -16,31 +8,28 @@ pictures:
   original: m6.jp-720x1174.jpg
   sizes: []
   thumbnail: m6.jp-720x1174.jpg
-- filename: m7.jp
-  original: m7.jp-1242x2208.jpg
+- filename: m2.jp
+  original: m2.jp-650x1080.jpg
   sizes: []
-  thumbnail: m7.jp-1242x2208.jpg
-- filename: m8.jp
-  original: m8.jp-768x1280.jpg
-  sizes: []
-  thumbnail: m8.jp-768x1280.jpg
-- filename: m5.jp
-  original: m5.jp-720x1280.jpg
-  sizes: []
-  thumbnail: m5.jp-720x1280.jpg
-- filename: m4.jp
-  original: m4.jp-768x1280.jpg
-  sizes: []
-  thumbnail: m4.jp-768x1280.jpg
+  thumbnail: m2.jp-650x1080.jpg
 - filename: m22.jp
   original: m22.jp-950x1080.jpg
   sizes: []
   thumbnail: m22.jp-950x1080.jpg
+- filename: m5.jp
+  original: m5.jp-720x1280.jpg
+  sizes: []
+  thumbnail: m5.jp-720x1280.jpg
+- filename: m1.jp
+  original: m1.jp-1270x1080.jpg
+  sizes: []
+  thumbnail: m1.jp-1270x1080.jpg
 - filename: m11.jp
   original: m11.jp-1270x1080.jpg
   sizes: []
   thumbnail: m11.jp-1270x1080.jpg
-- filename: m9.jp
-  original: m9.jp-500x480.jpg
+- filename: m7.jp
+  original: m7.jp-1242x2208.jpg
   sizes: []
-  thumbnail: m9.jp-500x480.jpg
+  thumbnail: m7.jp-1242x2208.jpg
+
