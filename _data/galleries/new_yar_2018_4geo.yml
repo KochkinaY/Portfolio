@@ -1,0 +1,18 @@
+picture_path: new_yar_2018_4geo
+pictures:
+- filename: 4.jp
+  original: 4.jp-350x350.jpg
+  sizes: []
+  thumbnail: 4.jp-350x350.jpg
+- filename: 3.jp
+  original: 3.jp-350x350.jpg
+  sizes: []
+  thumbnail: 3.jp-350x350.jpg
+- filename: 2.jp
+  original: 2.jp-350x350.jpg
+  sizes: []
+  thumbnail: 2.jp-350x350.jpg
+- filename: 1.jp
+  original: 1.jp-350x350.jpg
+  sizes: []
+  thumbnail: 1.jp-350x350.jpg

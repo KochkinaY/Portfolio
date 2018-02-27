@@ -6,105 +6,140 @@ __author__ = 'Olivier Pieters'
 __author_email__ = 'me@olivierpieters.be'
 __license__ = 'BSD-3-Clause'
 
-import yaml, imagesize
+import yaml, imagesize, os, fileinput
 from os import listdir, rename
 from os.path import isfile, join
+from shutil import copyfile
+
 
 # configuration
-output_file = "web.yml"
-input_file = output_file
-image_path = "web"
-extensions= ['jpg', 'png']
+assets_directory = "../../assets/portfolio/"
+pages_directory = "../../portfolio/"
 
-# set correct path
-path = join("../../assets/portfolio/", image_path)
+def generateYAML(folder):
+    # configuration
+    output_file = folder+".yml"
+    input_file = output_file
+    image_path = folder
+    extensions= ['jpg', 'png']
 
-# extract image files
-print('Collecting files...')
-files = [f for f in listdir(path) if isfile(join(path, f))]
-files = [f for f in files if f[f.rfind('.')+1:] in extensions ]
+    # set correct path
+    path = join(assets_directory, image_path)
 
-# rename image files
-print('Renaming files...')
-new_files = []
-for f in files:
-    if f[f.rfind('-')+1:f.rfind('.')] != 'thumbnail':
-        newf = f[:f.rfind('-')] + "-%sx%s" % imagesize.get(join(path, f)) + f[f.rfind('.'):]
-        rename(join(path, f),join(path, newf))
-    else:
-        newf = f
-    new_files.append(newf)
+    # extract image files
+    print('Collecting files...')
+    files = [f for f in listdir(path) if isfile(join(path, f))]
+    files = [f for f in files if f[f.rfind('.')+1:] in extensions ]
 
-files = new_files
-
-# helper objects to store gallery data
-new_gallery = {}
-thumbs = {}
-
-# group gallery data
-print('Grouping files...')
-for f in files:
-    filename = f[:f.rfind('-')]
-    if f[f.rfind('-')+1:f.rfind('.')] == "thumbnail":
-        thumbs[filename] = f
-    else:
-        if filename in new_gallery:
-            new_gallery[filename].append(f)
+    # rename image files
+    print('Renaming files...')
+    new_files = []
+    for f in files:
+        if f[f.rfind('-')+1:f.rfind('.')] != 'thumbnail':
+            newf = f[:f.rfind('-')] + "-%sx%s" % imagesize.get(join(path, f)) + f[f.rfind('.'):]
+            rename(join(path, f),join(path, newf))
         else:
-            new_gallery[filename] = [f]
+            newf = f
+        new_files.append(newf)
 
-# find largest image -> set as original
-print('Searching for originals and missing thumbnails...')
-originals = {}
-for image_set in new_gallery:
-    max_width, max_height = imagesize.get(join(path, new_gallery[image_set][0]))
-    min_width, min_height = imagesize.get(join(path, new_gallery[image_set][0]))
-    original = new_gallery[image_set][0]
-    thumbnail = new_gallery[image_set][0]
-    for image in new_gallery[image_set]:
-        width, height = imagesize.get(join(path, image))
-        if (width*height) > (max_width*max_height):
-            original = image
-        if (width*height) < (min_width*min_height):
-            thumbnail = image
-    # delete original from list to avoid double entries
-    del new_gallery[image_set][new_gallery[image_set].index(original)]
-    originals[image_set] = original
-    # add thumbnial if not yet in dict (not removed since might still be useful)
-    if image_set not in thumbs:
-        thumbs[image_set] = thumbnail
+    files = new_files
 
-# try to load YAML data
-print('Checking existing YAML data...')
-if isfile(input_file):
-    input_gallery = yaml.load(open(input_file, 'r'))
-else:
-    # create empty dummy file
-    input_gallery = {"pictures": []}
+    # helper objects to store gallery data
+    new_gallery = {}
+    thumbs = {}
 
-old_gallery = input_gallery['pictures']
+    # group gallery data
+    print('Grouping files...')
+    for f in files:
+        filename = f[:f.rfind('-')]
+        if f[f.rfind('-')+1:f.rfind('.')] == "thumbnail":
+            thumbs[filename] = f
+        else:
+            if filename in new_gallery:
+                new_gallery[filename].append(f)
+            else:
+                new_gallery[filename] = [f]
 
-# merge two data sets into one
-print('Merging YAML data...')
-for pic in new_gallery:
-    found = False
-    # try to find matching filename
-    for i in old_gallery:
-        if pic == i["filename"]:
-            i["sizes"] = new_gallery[pic]
-            # include thumbnail if present
-            if pic in thumbs:
-                i["thumbnail"] = thumbs[pic]
-            found = True
-    if not found:
-        # create new entry
-        old_gallery.append({"filename": pic, "sizes": new_gallery[pic], "thumbnail": thumbs[pic], "original": originals[pic]})
+    # find largest image -> set as original
+    print('Searching for originals and missing thumbnails...')
+    originals = {}
+    for image_set in new_gallery:
+        max_width, max_height = imagesize.get(join(path, new_gallery[image_set][0]))
+        min_width, min_height = imagesize.get(join(path, new_gallery[image_set][0]))
+        original = new_gallery[image_set][0]
+        thumbnail = new_gallery[image_set][0]
+        for image in new_gallery[image_set]:
+            width, height = imagesize.get(join(path, image))
+            if (width*height) > (max_width*max_height):
+                original = image
+            if (width*height) < (min_width*min_height):
+                thumbnail = image
+        # delete original from list to avoid double entries
+        del new_gallery[image_set][new_gallery[image_set].index(original)]
+        originals[image_set] = original
+        # add thumbnial if not yet in dict (not removed since might still be useful)
+        if image_set not in thumbs:
+            thumbs[image_set] = thumbnail
 
-# check if path existing
-if "picture_path" not in input_gallery:
-    input_gallery["picture_path"] = image_path
+    # try to load YAML data
+    print('Checking existing YAML data...')
+    if isfile(input_file):
+        input_gallery = yaml.load(open(input_file, 'r'))
+    else:
+        # create empty dummy file
+        input_gallery = {"pictures": []}
 
-# write to output file
-print('Writing YAML data to file...')
-with open(output_file, 'w') as f:
-    f.write( yaml.dump(input_gallery, default_flow_style=False) )
+    old_gallery = input_gallery['pictures']
+
+    # merge two data sets into one
+    print('Merging YAML data...')
+    for pic in new_gallery:
+        found = False
+        # try to find matching filename
+        for i in old_gallery:
+            if pic == i["filename"]:
+                i["sizes"] = new_gallery[pic]
+                # include thumbnail if present
+                if pic in thumbs:
+                    i["thumbnail"] = thumbs[pic]
+                found = True
+        if not found:
+            # create new entry
+            old_gallery.append({"filename": pic, "sizes": new_gallery[pic], "thumbnail": thumbs[pic], "original": originals[pic]})
+
+    # check if path existing
+    if "picture_path" not in input_gallery:
+        input_gallery["picture_path"] = image_path
+
+    # write to output file
+    print('Writing YAML data to file...')
+    with open(output_file, 'w') as f:
+        f.write( yaml.dump(input_gallery, default_flow_style=False) )
+        
+    if not 'picture_path: '+folder in open('overview.yml').read():
+		pic = new_gallery.keys()[0]
+        
+		preview = {"filename": pic, "sizes": new_gallery[pic], "thumbnail": thumbs[pic], "original": originals[pic]}
+		new_record = {'title': folder, 'directory': folder, 'picture_path': folder, 'preview': preview}
+		
+		overview = yaml.load(open('overview.yml'))
+		overview.append(new_record)
+		
+		with open('overview.yml', 'w') as f:
+			f.write( yaml.dump(overview, default_flow_style=False) )
+        
+
+def generateMD(folder):
+	if os.access(pages_directory+folder+".md", os.F_OK) == False:
+		if os.access(pages_directory+"_temp_gallegy_page"+".md", os.F_OK) == True:
+			print("Copyng _temp_gallegy_page.md to "+folder+".md")
+			copyfile(pages_directory+"_temp_gallegy_page"+".md", pages_directory+folder+".md")
+			
+			for line in fileinput.FileInput(pages_directory+folder+".md",inplace=1):
+				line = line.replace("TEMP",folder)
+				print line
+
+for folder in os.listdir(assets_directory) :
+    generateYAML(folder)
+    generateMD(folder)
+

@@ -1,0 +1,22 @@
+picture_path: ad_baners
+pictures:
+- filename: g21.jp
+  original: g21.jp-420x595.jpg
+  sizes: []
+  thumbnail: g21.jp-420x595.jpg
+- filename: g26.jp
+  original: g26.jp-420x595.jpg
+  sizes: []
+  thumbnail: g26.jp-420x595.jpg
+- filename: g23.jp
+  original: g23.jp-420x595.jpg
+  sizes: []
+  thumbnail: g23.jp-420x595.jpg
+- filename: g28.jp
+  original: g28.jp-420x595.jpg
+  sizes: []
+  thumbnail: g28.jp-420x595.jpg
+- filename: g25.jp
+  original: g25.jp-420x595.jpg
+  sizes: []
+  thumbnail: g25.jp-420x595.jpg

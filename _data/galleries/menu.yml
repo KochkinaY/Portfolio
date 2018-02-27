@@ -1,0 +1,18 @@
+picture_path: menu
+pictures:
+- filename: g6.jp
+  original: g6.jp-595x842.jpg
+  sizes: []
+  thumbnail: g6.jp-595x842.jpg
+- filename: g33.jp
+  original: g33.jp-595x842.jpg
+  sizes: []
+  thumbnail: g33.jp-595x842.jpg
+- filename: g17.jp
+  original: g17.jp-595x842.jpg
+  sizes: []
+  thumbnail: g17.jp-595x842.jpg
+- filename: g3.jp
+  original: g3.jp-842x595.jpg
+  sizes: []
+  thumbnail: g3.jp-842x595.jpg

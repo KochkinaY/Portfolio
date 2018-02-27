@@ -1,0 +1,10 @@
+picture_path: bookchat
+pictures:
+- filename: m22.jp
+  original: m22.jp-950x1080.jpg
+  sizes: []
+  thumbnail: m22.jp-950x1080.jpg
+- filename: m2.jp
+  original: m2.jp-650x1080.jpg
+  sizes: []
+  thumbnail: m2.jp-650x1080.jpg
