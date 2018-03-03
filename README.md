@@ -1,6 +1,7 @@
 # Portfolio
 Чтобы локально запустить необходимо выполнить команду:
 ```
+$ gem install jekyll bundler
 $ jekyll serve
 ```
 
